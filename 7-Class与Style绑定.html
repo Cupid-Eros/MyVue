@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h4>
+        在将 v-bind 用于 class 和 style
+        时,表达式结果的类型除了字符串之外，还可以是对象或数组,也可以在这里绑定一个返回对象的计算属性
+      </h4>
+      <div class="static" v-bind:class="classObject"></div>
+    </div>
+  </body>
+</html>
+<script>
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    el: "#root",
+    data: {
+      isReactive: true,
+      hasError: false,
+    },
+    computed: {
+      classObject: function () {
+        return {
+          active: this.isActive && !this.error,
+          "text-danger": this.error && this.error.type === "fatal",
+        };
+      },
+    },
+  });
+</script>
