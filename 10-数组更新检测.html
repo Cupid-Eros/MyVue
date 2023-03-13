@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <ul>
+        <li>push</li>
+        <li>pop</li>
+        <li>shift</li>
+        <li>unshift</li>
+        <li>splice</li>
+        <li>sort</li>
+        <li>reverse</li>
+      </ul>
+      <ul>
+        <li>filter</li>
+        <li>concat</li>
+        <li>slice</li>
+        <h5>
+          它们不会变更原始数组，而总是返回一个新数组。当使用非变更方法时，可以用新数组替换旧数组：
+        </h5>
+      </ul>
+      <ul v-for="set in sets">
+        <li v-for="n in even(set)">{{ n }}</li>
+      </ul>
+    </div>
+  </body>
+</html>
+<script>
+  Vue.config.productionTip = false;
+  const vm = new Vue({
+    el: "#root",
+    data: {
+      sets: [
+        [1, 2, 3, 4, 5],
+        [6, 7, 8, 9, 10],
+      ],
+    },
+    methods: {
+      even: function (numbers) {
+        return numbers.filter(function (number) {
+          return number % 2 === 0;
+        });
+      },
+    },
+  });
+</script>
