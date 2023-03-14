@@ -10,7 +10,6 @@
   </head>
   <body>
     <div id="root">
-      <h4>变更方法</h4>
       <ul>
         <li>push</li>
         <li>pop</li>
@@ -20,8 +19,17 @@
         <li>sort</li>
         <li>reverse</li>
       </ul>
-      <h4>替换数组</h4>
-      <h5>filter()、concat() 和 slice()。它们不会变更原始数组，而总是返回一个新数组</h5>
+      <ul>
+        <li>filter</li>
+        <li>concat</li>
+        <li>slice</li>
+        <h5>
+          它们不会变更原始数组，而总是返回一个新数组。当使用非变更方法时，可以用新数组替换旧数组：
+        </h5>
+      </ul>
+      <ul v-for="set in sets">
+        <li v-for="n in even(set)">{{ n }}</li>
+      </ul>
     </div>
   </body>
 </html>
@@ -29,6 +37,20 @@
   Vue.config.productionTip = false;
   const vm = new Vue({
     el: "#root",
-    data: {},
+    data: {
+      sets: [
+        [1, 2, 3, 4, 5],
+        [6, 7, 8, 9, 10,15],
+      ],
+    },
+    methods: {
+      even: function (numbers) {
+        return numbers.filter(function (number) {
+          return number % 2 === 0;
+        });
+        
+        
+      },
+    },
   });
 </script>
