@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script src='https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'></script>
+</head>
+<body>
+    <div id='root'>
+        <h4>可以用 v-model 指令在表单 <input>、<textarea> 及 <select> 元素上创建双向数据绑定</h4>
+            <h5>在文本区域插值 (<textarea>{{text}}</textarea>) 并不会生效，应用 v-model 来代替。</h5>
+    </div>
+</body>
+</html>
+<script>
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            
+        },
+    });
+</script>
