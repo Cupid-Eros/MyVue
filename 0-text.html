@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+  </head>
+  <body>
+    <div id="test">
+      <table id="itemConfigTable">
+        <tr data-rownum="1">
+          <td><input type="text" /></td>
+        </tr>
+        <tr>
+          <td>
+            <select
+              name="select1"
+              id="select1"
+              onfocus="this.size=this.length;"
+              onclick="this.size='1';"
+              onblur="this.size='1';"
+             
+            >
+              <option selected="selected" value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+<script>
+  function keydown(e) {
+    var currKey = e.keyCode;
+    var firtTr = $("tr[data-rownum='1']").children().length;
+    var inp = $("#itemConfigTable input,select");
+    $("#itemConfigTable input,select").each(function () {
+      $(this).keyup(function () {
+        if (event.keyCode == 40) {
+          if ($(this).attr("class").indexOf("selectStyle") >= 0) {
+          } else {
+            //当按下移键触发事件
+            var idx = inp.index(this); //得到当前文本框的 索引
+            if (idx < inp.length - (firtTr - 4)) {
+              inp[idx + firtTr - 3].focus(); // 下一个文本框得到焦点
+            }
+          }
+        }
+        if (event.keyCode == 39) {
+          //当按右移键触发事件
+          var idx = inp.index(this);
+          if (idx != inp.length - 1) {
+            inp[idx + 1].focus();
+          }
+        }
+        if (event.keyCode == 37) {
+          //当按左移键触发事件
+          var idx = inp.index(this);
+          if (idx != 0) {
+            inp[idx - 1].focus();
+          }
+        }
+        if (event.keyCode == 38) {
+          //当按上移键触发事件
+          var idx = inp.index(this);
+          if (idx > firtTr - 1) {
+            inp[idx - (firtTr - 3)].focus();
+          }
+        }
+        if (event.keyCode == 13) {
+          //当按回车键触发事件
+          var idx = inp.index(this);
+          if (idx != inp.length - 1) {
+            inp[idx + 1].focus();
+          }
+        }
+      });
+    });
+  }
+  document.onkeydown = keydown;
+</script>
