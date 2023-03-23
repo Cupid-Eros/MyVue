@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script src='https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'></script>
+</head>
+<body>
+    <div id='root'>
+        <span v-bind:title="msg">
+            {{foo}}
+          </span>
+          <button v-on:click="foo='baz'">Change it</button>
+    </div>
+
+</body>
+</html>
+<script>
+    Vue.config.productionTip = false;
+    var obj={
+        foo:'bar',
+        msg:"hello vue"
+    }
+    //Object.freeze(obj);//例外，不再是响应式的
+    const vm = new Vue({
+        el: '#root',
+        data: obj,//只有当实例被创建时就已经存在于 data 中的 property 才是响应式的
+        created() {
+            console.log(this);
+        },
+    });
+    console.log(vm.$data===data)
+    console.log(vm.$el===document.getElementById('root'))
+    // $watch 是一个实例方法,Vue 实例还暴露了一些有用的实例 property 与方法。它们都有前缀 $，以便与用户定义的 property 区分开来
+    vm.$watch('a', function (newValue, oldValue) {
+    // 这个回调将在 `vm.a` 改变后调用
+    })
+</script>

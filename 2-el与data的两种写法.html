@@ -9,21 +9,34 @@
     <script src='https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'></script>
 </head>
 <body>
-    <div id='root'></div>
+    <div id='root1'>
+       <div>{{a}}</div> 
+       <div>{{$options}}</div>
+    </div>
+    <div id='root2'>{{b}}</div>
 </body>
 </html>
 <script>
     Vue.config.productionTip = false;
+    //el的两种写法
     const vm = new Vue({
-        el: '#root',
-        data: {
+        el: '#root1',//el第一种
+        data: {     //data第一种
             a:1,
         },
+        mounted() {
+            console.log(this)
+        },
     });
-    console.log(vm.$data===data)
-    console.log(vm.$el===document.getElementById('root'))
-    // $watch 是一个实例方法,Vue 实例还暴露了一些有用的实例 property 与方法。它们都有前缀 $，以便与用户定义的 property 区分开来
-    vm.$watch('a', function (newValue, oldValue) {
-    // 这个回调将在 `vm.a` 改变后调用
+    //vm.$mount('#root');//el第二种
+    const vvm=new Vue({
+        el:"#root2",
+        data(){
+            return {
+                b:2,
+            }
+        }
     })
+
+
 </script>
