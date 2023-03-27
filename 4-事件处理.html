@@ -32,7 +32,9 @@
       <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
       <!-- 即事件不是从内部元素触发的 -->
       <div v-on:click.self="doThat">...</div>
-      
+      <button @click="showIfor1">btn1</button>
+      <button @click="showinfor2($event,66)">btn2</button>
+
     </div>
   </body>
 </html>
@@ -41,5 +43,14 @@
   const vm = new Vue({
     el: "#root",
     data: {},
+    methods: {
+      showIfor1(event){
+        console.log(event.target.innerText)
+      },
+      showinfor2(event,num){
+        console.log(event,num);
+        console.log(event.target.innerText);
+      }
+    },
   });
 </script>
