@@ -21,6 +21,10 @@
       <ul>
         <li v-for="value,name in object">{{name}}:{{value}}</li>
       </ul>
+      <ul>
+        <li v-for="value in filpersons" :key="value.id">{{value.name}}</li>
+      </ul>
+      <input type="text" v-model="keyWords">
     </div>
   </body>
 </html>
@@ -38,6 +42,19 @@
         author: "Jane Doe",
         publishedAt: "2016-04-10",
       },
+      persons:[
+        {id:'001',name:'mark',age:'9'},
+        {id:'002',name:'tom',age:'19'},
+        {id:'003',name:'jerry',age:'29'}
+      ],
+      keyWords:''
     },
+    computed:{
+      filpersons(){
+        return this.persons.filter(item => {
+          return item.name.indexOf(this.keyWords) !==-1
+        })
+      }
+    }
   });
 </script>
