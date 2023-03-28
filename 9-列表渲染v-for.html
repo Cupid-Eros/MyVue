@@ -12,11 +12,11 @@
     <div id="root">
       <h4>用 v-for 把一个数组对应为一组元素</h4>
       <ul>
-        <li v-for="item in items" :key="item.id">{{item.message}}</li>
+        <li v-for="item,index in items" :key="item.id">{{item.message}}--{{index}}</li>
       </ul>
       <h4>也可以用 v-for 来遍历一个对象的 property。</h4>
       <ul>
-        <li v-for="value in object">{{value}}</li>
+        <li v-for="value,index in object" :key="value.id">{{value}}--{{index}}</li>
       </ul>
       <ul>
         <li v-for="value,name in object">{{name}}:{{value}}</li>

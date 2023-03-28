@@ -14,7 +14,7 @@
         在将 v-bind 用于 class 和 style
         时,表达式结果的类型除了字符串之外，还可以是对象或数组,也可以在这里绑定一个返回对象的计算属性
       </h4>
-      <div class="static" v-bind:class="classObject"></div>
+      <div  :class="classObject"></div>
     </div>
   </body>
 </html>
@@ -25,6 +25,12 @@
     data: {
       isReactive: true,
       hasError: false,
+      mood:'normal',
+      calssArr:['atguigu1','atguigu2','atguigu3'],
+      classObj:{
+        atguigu1:true,
+        atguigu2:false
+      }
     },
     computed: {
       classObject: function () {

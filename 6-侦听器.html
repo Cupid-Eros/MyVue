@@ -34,10 +34,18 @@ var watchExampleVM = new Vue({
   },
   watch: {
     // 如果 `question` 发生改变，这个函数就会运行
-    question: function (newQuestion, oldQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
-      this.debouncedGetAnswer()
-    }
+    // question: function (newQuestion, oldQuestion) {
+    //   this.answer = 'Waiting for you to stop typing...'
+    //   this.debouncedGetAnswer()
+    // }
+    // question:{
+    //   immediate:false,
+    //   handler(newValue,oldValue){
+    //     console.log(this);
+    //      this.answer = 'Waiting for you to stop typing...'
+    //      this.debouncedGetAnswer()
+    //   }
+    // }
   },
   created: function () {
     // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
@@ -64,5 +72,13 @@ var watchExampleVM = new Vue({
         })
     }
   }
+})
+watchExampleVM.$watch('question',{
+      immediate:false,
+      handler(newValue,oldValue){
+        console.log(this);
+         this.answer = 'Waiting for you to stop typing...'
+         this.debouncedGetAnswer()
+      }
 })
 </script>
