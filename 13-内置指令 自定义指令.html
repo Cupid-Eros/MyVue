@@ -7,11 +7,15 @@
     <title>Document</title>
     <script src='./src/jquery-3.6.3.js'></script>
     <script src='./src/vue.js'></script>
+    <script src='https://cdn.staticfile.org/dayjs/1.11.7/dayjs.min.js'></script>
 </head>
 <body>
     <div id='root'>
-        <h4>可以用 v-model 指令在表单 <input>、<textarea> 及 <select> 元素上创建双向数据绑定</h4>
-            <h5>在文本区域插值 (<textarea>{{text}}</textarea>) 并不会生效，应用 v-model 来代替。</h5>
+        <div v-text="replace">v-text</div>
+        <div v-html="rawHtml">v-html</div>
+        <div v-once>初始化的值：{{n}}</div>
+        <div>{{n}}</div>
+        <button @click="n++">n+</button>
     </div>
 </body>
 </html>
@@ -20,7 +24,14 @@
     const vm = new Vue({
         el: '#root',
         data: {
-            
+            replace:"替换节点内容",
+            rawHtml:'<h3>hello</h3>',
+            n:1,
         },
+        directives:{
+            'big-number'(element,binding){
+            
+            }
+        }
     });
 </script>

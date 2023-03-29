@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script src='./src/jquery-3.6.3.js'></script>
+    <script src='./src/vue.js'></script>
+    <script src="https://cdn.staticfile.org/dayjs/1.11.7/dayjs.min.js"></script>
+</head>
+
+<body>
+    <div id='root'>
+        <h4>可以用 v-model 指令在表单 &ltinput&gt、&lttextarea&gt 及 &ltselect&gt 元素上创建双向数据绑定</h4>
+        <h5>在文本区域插值 (&lttextarea&gt &lcub&lcubtext&rcub&rcub &lt/textarea&gt) 并不会生效，应用 v-model 来代替。</h5>
+        账号：<input type="text" name="" id="" v-model.trime="userInfor.account"><br>
+        密码：<input type="password" name="" id="" v-model="userInfor.password"><br>
+        年龄：<input type="number" name="" id="" v-model.number="userInfor.age"><br>
+        性别：
+        男：<input type="radio" name="sex" id="" v-model="userInfor.sex" value="female">
+        女：<input type="radio" name="sex" id="" v-model="userInfor.sex" value="male"><br>
+        爱好：
+        学习：<input type="checkbox"  id="" v-model="userInfor.hobby" value="study">
+        打游戏：<input type="checkbox"  id="" v-model="userInfor.hobby" value="game">
+        吃饭：<input type="checkbox"  id="" v-model="userInfor.hobby" value="eat"><br>
+        校区
+        <select name="" id="" v-model="userInfor.city">
+            <option value="">choose</option>
+            <option value="beijing">北京</option>
+            <option value="shanghai">上海</option>
+            <option value="shenzhen">深圳</option>
+            <option value="guangzhou">广州</option>
+        </select><br>
+        其他
+        <textarea name="" id="" cols="30" rows="10" v-model.lazy="userInfor.other"></textarea><br>
+        <input type="checkbox" name="" id="" v-model="userInfor.agree">阅读并接受
+        <a href="https://www.baidu.com">《用户协议》</a><br>
+        <button>submit</button>
+
+        <div>{{time | timeFormater('YYYY-MM-DD HH:mm:ss') | mySlice}}这样写表示time作为timeFormater的第一个参数传入，然后timeFormater的返回值作为mySlice的参数传入。</div>
+    </div>
+</body>
+
+</html>
+<script>
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            userInfor:{
+                account:'',
+                password:'',
+                age:'18',
+                sex:'female',
+                hobby:[],
+                city:'beijing',
+                other:'',
+                agree:''
+            },
+            time:Date()
+        },
+        filters:{
+            timeFormater(value,str='YYYY年MM月DD日 HH:mm:ss'){
+                return dayjs(value).format(str);
+            },
+            mySlice(value){
+                return value.slice(0,value.length)
+            }
+        }
+    });
+</script>

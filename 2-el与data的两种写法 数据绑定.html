@@ -12,6 +12,8 @@
     <div id='root1'>
        <div>{{a}}</div> 
        <div>{{$options}}</div>
+       <input type="text" :value="name"><br>
+       <input type="text" name="" id="" v-model="name"><br>
     </div>
     <div id='root2'>{{b}}</div>
 </body>
@@ -28,7 +30,7 @@
             console.log(this)
         },
     });
-    //vm.$mount('#root');//el第二种
+    //vm.$mount('#root1');//el第二种
     const vvm=new Vue({
         el:"#root2",
         data(){
