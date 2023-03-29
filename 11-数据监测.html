@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <script src='./src/jquery-3.6.3.js'></script>
+    <script src='./src/vue.js'></script>
+</head>
+<body>
+    <div id='root'></div>
+</body>
+</html>
+<script>
+    Vue.config.productionTip = false;
+    // const vm = new Vue({
+    //     el: '#root',
+    //     data: {
+    //         name:'尚硅谷',
+    //         address:'北京'
+    //     },
+    // });
+    let data={
+        name:'尚硅谷',
+        addres:'北京'
+    }
+    function Oberver(obj) {
+        const keys=Object.keys(obj);
+        keys.forEach((k)=>{
+            Object.defineProperty(this,k,{
+                get() {
+                    return obj[k]
+                },
+                set(value) {
+                    console.log(`${k}被修改了，重新解析模板`);
+                    obj[k]=value
+                }
+            })
+        })
+
+    }
+    const obs = new Oberver(data);
+    console.log(obs);
+
+    let vm={};
+    vm._data=data=obs
+</script>

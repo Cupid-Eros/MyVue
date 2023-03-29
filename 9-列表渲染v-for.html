@@ -25,6 +25,10 @@
         <li v-for="value in filpersons" :key="value.id">{{value.name}}</li>
       </ul>
       <input type="text" v-model="keyWords">
+      <ul>
+        <li v-for="value in persons" :key="value.id">{{value.name}}--{{value.age}}</li>
+      </ul>
+      <button @click="updateMark">change  mark age </button>
     </div>
   </body>
 </html>
@@ -55,6 +59,16 @@
           return item.name.indexOf(this.keyWords) !==-1
         })
       }
-    }
+    },
+    methods: {
+      updateMark(){
+        //this.persons[0].age='19'//有效
+        //this.persons[0]={id:'001',name:'mark',age:'19'}//无效，不监视，模板未更新
+        this.persons.splice(0,1,{id:'001',name:'mark',age:'19'})//有效
+        console.log(this);
+        console.log(this.persons);
+        console.log(this.persons[0]);
+      }
+    },
   });
 </script>
