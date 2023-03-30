@@ -16,6 +16,8 @@
         <div v-once>初始化的值：{{n}}</div>
         <div>{{n}}</div>
         <button @click="n++">n+</button>
+        <h2>放大10倍后的n: <span v-big="n"></span></h2><br>
+        <input type="text" v-fbind:value="n">
     </div>
 </body>
 </html>
@@ -29,8 +31,20 @@
             n:1,
         },
         directives:{
-            'big-number'(element,binding){
-            
+            'big'(element,binding){
+                console.log('big',this,'element',element,'binding',binding)//this 是window
+                element.innerText=binding.value*10
+            },
+            'fbind':{
+                bind(element,binding){
+                    element.value=binding.value;
+                },
+                inserted(element,binding){
+                    element.focus()
+                },
+                update(element,binding){
+                    element.value=binding.value
+                }
             }
         }
     });
