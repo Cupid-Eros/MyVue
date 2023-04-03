@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"></script>
+  <script src="./src/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <div class="demo">
+      <h4>{{msg}}</h4>
+    </div>
+    <!-- 第三步：编写组件标签 -->
+    <school></school>
+    <student></student>
+    
+  </div>
+  <div id="root2">
+    <hello></hello>
+  </div>
+</body>
+
+</html>
+<script>
+  Vue.config.productionTip = false;
+
+  // 第一步：创建scholl组件
+  const school = Vue.extend({
+    template: `<div class="demo">
+  <h3>学校名称：{{schollName}}</h3>
+  <h3>学校地址：{{address}}</h3>
+  <button @click='showName'>学校名称</button>
+</div>`,
+    data() {
+      return {
+        schollName: '霍格沃茨',
+        address: '苏格兰'
+      }
+    },
+    methods: {
+      showName() {
+        alert(this.schollName)
+      }
+    }
+  })
+  // 第一步：创建student组件
+  const student = Vue.extend({
+    template: `<div class="demo">
+  <h3>学生名称：{{studentName}}</h3>
+  <h3>年纪：{{age}}</h3>
+</div>`,
+    data() {
+      return {
+        studentName: '霍格沃茨',
+        age: '18'
+      }
+    },
+  })
+  // 第一步：创建hello组件
+  const hello = Vue.extend({
+    template: `<div class="demo">
+  <h3>你好啊！{{name}}</h3>
+</div>`,
+    data() {
+      return {
+        name: 'tom',
+      }
+    }
+  })
+  
+  
+  Vue.component('hello',hello)
+  new Vue({
+    el: "#root2",
+    data: {
+      msg: 'hello componet'
+    },
+    created() {
+      console.log(this)
+    },
+  });
+  new Vue({
+    el: "#root",
+    data: {
+      msg: 'hello componet'
+    },
+    //第二步注册组件
+    components: {
+      school,
+      student
+    },
+    created() {
+      console.log(this)
+    },
+  });
+</script>
