@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -9,31 +10,14 @@
     <script src='./src/vue.js'></script>
     <script src='https://cdn.staticfile.org/dayjs/1.11.7/dayjs.min.js'></script>
 </head>
+
 <body>
     <div id='root'></div>
 </body>
+
 </html>
 <script>
     Vue.config.productionTip = false;
-    // 第一步：创建scholl组件
-    const school = Vue.extend({
-        template: `<div class="demo">
-    <h3>学校名称：{{schollName}}</h3>
-    <h3>学校地址：{{address}}</h3>
-    <button @click='showName'>学校名称</button>
-    </div>`,
-        data() {
-        return {
-            schollName: '霍格沃茨',
-            address: '苏格兰'
-        }
-        },
-        methods: {
-        showName() {
-            alert(this.schollName)
-        }
-        }
-    })
     // 第一步：创建student组件
     const student = Vue.extend({
         template: `<div class="demo">
@@ -41,39 +25,60 @@
     <h3>年纪：{{age}}</h3>
     </div>`,
         data() {
-        return {
-            studentName: '霍格沃茨',
-            age: '18'
-        }
+            return {
+                studentName: '沃茨',
+                age: '18'
+            }
         },
     })
+    // 第一步：创建scholl组件
+    const school = Vue.extend({
+        template: `<div class="demo">
+    <h3>学校名称：{{schollName}}</h3>
+    <h3>学校地址：{{address}}</h3>
+    <student></student>
+    </div>`,
+        data() {
+            return {
+                schollName: '霍格沃茨',
+                address: '苏格兰'
+            }
+        },
+        methods: {
+            showName() {
+                alert(this.schollName)
+            },
+        },
+        components: { student }
+    })
+
     // 第一步：创建hello组件
     const hello = Vue.extend({
         template: `<div class="demo">
     <h3>你好啊！{{name}}</h3>
     </div>`,
         data() {
-        return {
-            name: 'tom',
-        }
+            return {
+                name: 'tom',
+            }
         }
     })
     //定义app组件
-    const app=Vue.extend({
-        template:`
+    const app = Vue.extend({
+        template: `
         <div>
             <school></school>
             <hello></hello>
         </div>
         `,
-        components:{school,hello}
+        components: { school, hello }
     })
     const vm = new Vue({
         el: '#root',
         data: {
-            
+
         },
-        template:'<app></app>',
-        component:{app}
+        template: '<app></app>',
+        components: { app }
     });
 </script>
